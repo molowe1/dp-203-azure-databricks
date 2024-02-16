@@ -1,0 +1,9 @@
+{
+	"name": "appfactory240114",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "87c2cc7e-9760-454d-9dfe-65d97463d5d7",
+		"tenantId": "62428ea3-06fb-40e5-b07e-904bb993ca61"
+	}
+}

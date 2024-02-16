@@ -1,0 +1,30 @@
+{
+	"name": "DB_PIPELINE",
+	"properties": {
+		"activities": [
+			{
+				"name": "RunNotebook",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/olowemartin@live.co.uk/Working with data - automated script"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LS",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-02-14T18:37:27Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
