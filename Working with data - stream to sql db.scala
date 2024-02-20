@@ -14,56 +14,9 @@ import java.sql.{Connection,DriverManager,ResultSet}
 
 // COMMAND ----------
 
-// MAGIC %md
-// MAGIC CREATE TABLE [adf-db].dbo.customer_table (
-// MAGIC 	CustomerID nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	NameStyle nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	Title nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	FirstName nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	MiddleName nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	LastName nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	Suffix nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	CompanyName nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	SalesPerson nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	EmailAddress nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	Phone nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	PasswordHash nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	PasswordSalt nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-// MAGIC 	rowguid nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
-// MAGIC );
-
-// COMMAND ----------
-
 spark.conf.set(
     "fs.azure.account.key.datalakedemodp203.dfs.core.windows.net",
     dbutils.secrets.get(scope="datalakedemodp203_key", key="datalakedemodp203-secret"))
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC val configs = Map(
-// MAGIC   "fs.azure.account.auth.type" -> "OAuth",
-// MAGIC   "fs.azure.account.oauth.provider.type" -> "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider",
-// MAGIC   "fs.azure.account.oauth2.client.id" -> "<application-id>",
-// MAGIC   "fs.azure.account.oauth2.client.secret" -> dbutils.secrets.get(scope="<scope-name>",key="<service-credential-key-name>"),
-// MAGIC   "fs.azure.account.oauth2.client.endpoint" -> "https://login.microsoftonline.com/<directory-id>/oauth2/token")
-// MAGIC // Optionally, you can add <directory-name> to the source URI of your mount point.
-// MAGIC dbutils.fs.mount(
-// MAGIC   source = "abfss://csv@datalakedemodp203.dfs.core.windows.net/",
-// MAGIC   mountPoint = "/mnt/dp203_datalake",
-// MAGIC   extraConfigs = configs)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC dbutils.fs.mount(
-// MAGIC   source = "wasbs://csv@datalakedemodp203.blob.core.windows.net/",
-// MAGIC   mount_point = "/mnt/dp203_datalake",
-// MAGIC   extra_configs = 
-// MAGIC   {
-// MAGIC     "fs.azure.account.key.datalakedemodp203.blob.core.windows.net": "aTVPvtKPOE2ZdZm8o2uCG42KJM93qYnySCktFMb5TEjQiNbAoTf35s1Ha1ATgAg12cPbXxki7In++AStaTR/Uw=="
-// MAGIC   }
-// MAGIC )
 
 // COMMAND ----------
 
@@ -99,12 +52,6 @@ val readStreamDf = spark.readStream
 
 readStreamDf.printSchema
 
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC val userSchema = spark.read.option("header", "true").csv("abfss://csv@datalakedemodp203.dfs.core.windows.net/Customer/Customer01.csv").schema
-// MAGIC val readDf = spark.read.format("csv").schema(userSchema).load("abfss://csv@datalakedemodp203.dfs.core.windows.net/Customer/Customer01.csv")
 
 // COMMAND ----------
 
@@ -183,11 +130,6 @@ sqlTableDF.printSchema
 // COMMAND ----------
 
 sqlTableDF.show(5)
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC sqlTableDF.select("FirstName", "LastName","CompanyName","EmailAddress").show(10)
 
 // COMMAND ----------
 
