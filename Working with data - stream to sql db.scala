@@ -55,10 +55,6 @@ readStreamDf.printSchema
 
 // COMMAND ----------
 
-//spark.conf.set(
-    //"fs.azure.account.key.datalakedemodp203.dfs.core.windows.net",
-    //"aTVPvtKPOE2ZdZm8o2uCG42KJM93qYnySCktFMb5TEjQiNbAoTf35s1Ha1ATgAg12cPbXxki7In++AStaTR/Uw==")
-    
 val WriteToSQLQuery  = readStreamDf.writeStream
     //.option("basePath", "/mnt/dp203_datalake")
     .foreach(new ForeachWriter[Row] {
