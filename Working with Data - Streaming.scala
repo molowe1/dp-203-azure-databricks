@@ -21,7 +21,7 @@
 
 spark.conf.set(
     "fs.azure.account.key.datalakedemodp203.dfs.core.windows.net",
-    "aTVPvtKPOE2ZdZm8o2uCG42KJM93qYnySCktFMb5TEjQiNbAoTf35s1Ha1ATgAg12cPbXxki7In++AStaTR/Uw==")
+    dbutils.secrets.get(scope="datalakedemodp203_key", key="datalakedemodp203-secret"))
 
 val path="abfss://csv@datalakedemodp203.dfs.core.windows.net/Customer/"
 val checkpointPath="abfss://checkpoint@datalakedemodp203.dfs.core.windows.net/" //new container

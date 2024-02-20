@@ -7,7 +7,7 @@
 // Declare the values for your database
 
 val jdbcUsername = "Dp203admin"
-val jdbcPassword = "demo@203password"
+val jdbcPassword = dbutils.secrets.get(scope="datalakedemodp203_key", key="dp-password")
 val jdbcHostname = "dp203section4.database.windows.net" //typically, this is in the form or servername.database.windows.net
 val jdbcPort = 1433
 val jdbcDatabase ="adf-db"

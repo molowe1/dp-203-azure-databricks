@@ -19,7 +19,7 @@ CREATE TABLE logdata
 -- MAGIC %scala
 -- MAGIC spark.conf.set(
 -- MAGIC     "fs.azure.account.key.datalakedemodp203.dfs.core.windows.net",
--- MAGIC     "aTVPvtKPOE2ZdZm8o2uCG42KJM93qYnySCktFMb5TEjQiNbAoTf35s1Ha1ATgAg12cPbXxki7In++AStaTR/Uw==")
+-- MAGIC     dbutils.secrets.get(scope="datalakedemodp203_key", key="datalakedemodp203-secret"))
 
 -- COMMAND ----------
 

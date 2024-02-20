@@ -7,7 +7,7 @@
 // Declare the values for your database
 
 val jdbcUsername = "Dp203admin"
-val jdbcPassword = "demo@203password"
+val jdbcPassword = dbutils.secrets.get(scope="datalakedemodp203_key", key="dp-password")
 val jdbcHostname = "dp203section4.database.windows.net" //typically, this is in the form or servername.database.windows.net
 val jdbcPort = 1433
 val jdbcDatabase ="app-db"
@@ -25,7 +25,7 @@ connectionProperties.put("password", s"${jdbcPassword}")
 
 spark.conf.set(
     "fs.azure.account.key.datalakedemodp203.dfs.core.windows.net",
-    "aTVPvtKPOE2ZdZm8o2uCG42KJM93qYnySCktFMb5TEjQiNbAoTf35s1Ha1ATgAg12cPbXxki7In++AStaTR/Uw==")
+    dbutils.secrets.get(scope="datalakedemodp203_key", key="datalakedemodp203-secret"))
 
 // COMMAND ----------
 
